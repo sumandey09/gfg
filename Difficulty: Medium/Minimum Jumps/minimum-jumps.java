@@ -61,7 +61,19 @@ class Solution {
                 steps = maxReach - i;
             }
         }
-
+        
         return -1; 
+    //   int count = 1;
+    //   int temp = arr[0];
+    //   int i = 1; 
+
+    //   while (i < arr.length) {
+    //       temp = temp + arr[i]; // Add current element to temp
+    //       count++; // Increment the count
+    //       i++; // Move to the next element
+    //     }
+
+    //   return count;
+
     }
 }
