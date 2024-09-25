@@ -78,19 +78,38 @@ class Node
 class Solution {
     // Function to check whether the list is palindrome.
     boolean isPalindrome(Node head) {
-        Node temp=head;
-        Stack<Integer> st =new Stack<>();
-        while(temp!=null){
-            st.push(temp.data);
-            temp=temp.next;
+        // Edge cases: empty list or single node list.
+        if (head == null || head.next == null) {
+            return true;
         }
-        temp=head;
-        while(temp!=null){
-            if(temp.data!=st.peek()) return false;
-            temp=temp.next;
-            st.pop();
-            
+        
+        // Step 1: Use two pointers to find the middle of the linked list.
+        Node slow = head, fast = head;
+        while (fast != null && fast.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
         }
-        return true;
+        
+        // Step 2: Reverse the second half of the linked list.
+        Node prev = null;
+        while (slow != null) {
+            Node next = slow.next;
+            slow.next = prev;
+            prev = slow;
+            slow = next;
+        }
+        
+        // Step 3: Compare the first half and the reversed second half.
+        Node left = head;
+        Node right = prev;
+        while (right != null) {  // Compare till the end of reversed half
+            if (left.data != right.data) {
+                return false;
+            }
+            left = left.next;
+            right = right.next;
+        }
+        
+        return true;  // If all elements match, it's a palindrome.
     }
 }
