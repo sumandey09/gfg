@@ -39,15 +39,17 @@ class Main {
 // User function Template for Java
 class Solution {
 
+    // arr: input array
+    // Function to find the sum of contiguous subarray with maximum sum.
     int maxSubarraySum(int[] arr) {
-        int maxSum = arr[0];  
-        int currentSum = arr[0];  
-        
-        for (int i = 1; i < arr.length; i++) {
-            currentSum = Math.max(arr[i], currentSum + arr[i]);
-            maxSum = Math.max(maxSum, currentSum);
+
+        // Your code here
+        int sum=0,ans=Integer.MIN_VALUE,n=arr.length;
+        for(int i=0;i<n;i++){
+            sum+=arr[i];
+            ans=Math.max(ans,sum);
+            if(sum<0)sum=0;
         }
-        return maxSum;
+        return ans;
     }
 }
-
